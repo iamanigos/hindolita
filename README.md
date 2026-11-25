@@ -1,81 +1,206 @@
-# Hindolita Chakraborty — personal music website
+# Hindolita Chakraborty: *Where Poetry Finds a Voice*
 
-A small static website: plain HTML, CSS and JavaScript. No framework, no build step, no server code, no paid services.
+The personal music website of **Hindolita Chakraborty**, a vocalist rooted in the musical heritage of Bengal: ghazal, thumri, semi-classical and Ragpradhan songs, fusion, Rabindrasangeet, Nazrulgeeti and Indian folk.
 
-## Folder structure
+**🌐 Live at [raginibyhindolita.com](https://raginibyhindolita.com/)**
+
+It's a hand-built static site: plain HTML, CSS and a little vanilla JavaScript. There's no framework, no build step, no database and nothing to pay for. It's hosted free on GitHub Pages.
+
+---
+
+## Contents
+
+- [What's on the site](#whats-on-the-site)
+- [Design](#design)
+- [Project structure](#project-structure)
+- [Preview locally](#preview-locally)
+- [Common edits](#common-edits)
+- [Publishing](#publishing)
+- [Domain & hosting](#domain--hosting)
+- [Accessibility & privacy](#accessibility--privacy)
+- [Rights](#rights)
+
+---
+
+## What's on the site
+
+The page is a single scroll, with sections that alternate between light and dark:
+
+| # | Section | Background | What it holds |
+|---|---|---|---|
+| 1 | **Hero** | ivory | Her name, *"Where Poetry Finds a Voice, and Melodies Find a Home"*, main portrait |
+| 2 | **About**: *Music is a way of being.* | dark chocolate | Introduction to her musical world |
+| 3 | **The Roots** | ivory | Childhood and present-day photos with her parents and first gurus |
+| 4 | **The Performer** | charcoal | Live concert photo, stage photo, *"A graceful voice and captivating stage presence."* |
+| 5 | **Music**: *Music, in moments.* | beige | Two recordings in custom dark-brown audio players |
+| 6 | **A musical journey** | aubergine | Seven traditions, from Ghazal to Indian folk |
+| 7 | **Beyond music** | champagne | Her geology & marine research, link to Google Scholar |
+| 8 | **Contact** | maroon | Email, phone, Instagram, Facebook |
+
+**Small touches:**
+- 🪕 **Tanpura menu icon** on phones. It sways gently every few seconds.
+- 🎵 **Background music** (a one-minute *Jog* loop). It starts on the visitor's first tap, with a mute button in the bottom-right corner. It steps aside while her songs play, and remembers if a visitor turns it off.
+- ✨ Sections fade in softly on scroll. All motion is switched off for visitors who ask their device to reduce motion.
+
+---
+
+## Design
+
+| | |
+|---|---|
+| **Feel** | Quiet, warm and minimal, with generous whitespace |
+| **Serif** | Iowan Old Style → Baskerville → Palatino → Georgia (each visitor's own installed fonts, no web fonts) |
+| **Sans** | Inter → system UI fonts |
+| **Accent** | Champagne gold on dark sections, warm brown on light ones |
+
+All colours are CSS variables at the top of [`assets/css/style.css`](assets/css/style.css):
+
+| Variable | Colour | Used for |
+|---|---|---|
+| `--paper` | `#f4f0e8` | Ivory sections |
+| `--paper2` / `--paper3` | `#ebe5da` / `#e9e3d8` | Champagne / beige sections |
+| `--choc` | `#2c2019` | About section |
+| `--dark` | `#292923` | Performer section |
+| `--plum` | `#2a2130` | Journey section |
+| `--wine` / `--wine-deep` | `#3a1a20` / `#2e1418` | Contact / footer |
+| `--ink` | `#282722` | Body text on light sections |
+
+Text colours were chosen to meet the WCAG contrast guidelines on every background.
+
+---
+
+## Project structure
 
 ```
-index.html              ← the whole page (edit text here)
-assets/css/style.css    ← all styling (colours are at the top, in :root)
-assets/js/main.js       ← mobile menu, scroll effects, footer year
-assets/images/          ← optimised WebP images used by the site, favicon, social-share image
-images/                 ← original photographs (kept untouched, not used directly by the page)
-.nojekyll               ← tells GitHub Pages to serve files as-is
+index.html                  The whole page: all text lives here
+CNAME                       Custom domain for GitHub Pages (don't delete)
+.nojekyll                   Tells GitHub Pages to serve files as-is
+
+assets/
+  css/style.css             All styling (colours and fonts at the top)
+  js/main.js                Menu, scroll effects, audio players, background music
+  images/                   Optimised WebP images the page actually loads
+    upbringing/             Original family photos (source files)
+    performer/              Original stage photos (source files)
+  music/                    MP3 recordings + background loop
+
+images/                     Original photographs & artwork, kept for safekeeping
 ```
+
+The page loads only the optimised files in `assets/images/`. The originals are kept so new sizes can be made later.
+
+---
 
 ## Preview locally
 
-**Option A — VS Code Live Server** (if the extension is installed): right-click `index.html` → **Open with Live Server**.
-
-**Option B — built-in Python server** (works on any Mac). In the VS Code terminal, from this folder:
+From this folder, in the VS Code terminal:
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/>. Press `Ctrl+C` in the terminal to stop it.
+Open **<http://localhost:8000/>**. Press `Ctrl+C` to stop the server.
 
-**Option C** — double-click `index.html`. It works because every path is relative.
+> **Tip:** after changing CSS or JS, refresh with **Cmd+Shift+R** (Mac) or **Ctrl+Shift+R** (Windows) so the browser doesn't use an old cached copy.
 
-## Editing content
+VS Code's **Live Server** extension works too: right-click `index.html` → *Open with Live Server*.
 
-Search `index.html` for `TODO` to find the places waiting for real content. Only add facts that Hindolita has confirmed.
+---
 
-To replace a photo: put the new image in `assets/images/`, then update the `src` and `srcset` on the matching `<img>` in `index.html`. Keep the `width` and `height` attributes equal to the image's real pixel size.
+## Common edits
 
-## Publish free with GitHub Pages (recommended)
+### ✏️ Change text
+All words on the site are in [`index.html`](index.html), and each section is marked with a comment like `<!-- ===== THE ROOTS ===== -->`. Edit the text, save and refresh.
 
-The site is already in the GitHub repository `iamanigos/hindolita`.
+### 🎨 Changed CSS or JavaScript? Bump the version number
+Near the top and bottom of `index.html`, the stylesheet and script are loaded with version numbers:
 
-1. Commit and push your changes:
-   ```bash
-   git add -A
-   git commit -m "Describe the change"
-   git push origin main
-   ```
-2. On GitHub, open the repository → **Settings** → **Pages**.
-3. Under **Build and deployment**, set **Source** to **Deploy from a branch**, **Branch** to `main`, and **Folder** to `/ (root)`. Click **Save**.
-4. Wait 1–2 minutes. The live site is at **https://raginibyhindolita.com/**
-   (the old address https://iamanigos.github.io/hindolita/ redirects there).
-5. Open it, check every section on a phone and a computer, and tap each contact link.
+```html
+<link rel="stylesheet" href="assets/css/style.css?v=21">
+<script src="assets/js/main.js?v=5" defer></script>
+```
 
-Every later `git push` updates the live site automatically, usually within a minute or two.
+**Add 1 to the number** whenever you change that file (`?v=21` → `?v=22`). This makes every visitor's browser download the new version. Without it, returning visitors can see a half-updated page.
 
-> GitHub Pages on a free account requires the repository to be **public**. Anything in the repository, including its history, can be seen by anyone.
+### 🎵 Add a song
+1. Put the MP3 in `assets/music/`, with a simple name with no spaces, e.g. `ami-chini-go-chini.mp3`.
+2. In `index.html`, find the Music section and copy a whole `<article class="track">…</article>` block.
+3. In the copy, change:
+   - the title (`track-title`) and caption (`music-caption`; Bengali text goes in `<span lang="bn">…</span>`)
+   - the file path in `<audio … src="…">`
+   - `aria-label="Play …"` and `aria-label="Seek — …"`
+   - the duration in `ap-duration`, and `max="…"` (length in seconds) on the seek bar
 
-## Alternative: Vercel (Hobby, free)
+To find a song's length on a Mac, run `afinfo assets/music/your-song.mp3 | grep duration`.
 
-1. Sign in at vercel.com with GitHub → **Add New… → Project** → import `iamanigos/hindolita`.
-2. Set **Framework Preset** to **Other**. Leave the **Build Command** empty, set **Output Directory** to `.` (or leave it empty), and leave **Root Directory** as `./`.
-3. Click **Deploy**. Vercel shows a `*.vercel.app` address. Open it and check the site.
-4. If you use Vercel, update the `canonical`, `og:url` and `og:image` addresses at the top of `index.html` to match.
+### 🖼️ Replace or add a photo
+1. Make a web-sized copy, about 1200–1500 px wide, ideally as `.webp`. Any image tool can do this, or `sips -Z 1500 photo.jpg --out photo-1500.jpg` on a Mac.
+2. Save it in `assets/images/` and keep the original in `images/` or a subfolder.
+3. Update the `src`, `srcset`, `width` and `height` of the `<img>` in `index.html`.
+4. Write a short, factual `alt` description of what's in the photo.
 
-## Custom domain
+### 🎶 Change the background music
+Replace `assets/music/background-jog.m4a` with another short loop under the same name, or update the `<audio id="bgMusic">` line near the end of `index.html`. Loops of 30–90 seconds work best. The volume is set by `BG_VOLUME` in `main.js`.
 
-The site uses **raginibyhindolita.com** (registered at GoDaddy). The `CNAME` file in this folder tells GitHub Pages which domain to serve — don't delete it. GoDaddy DNS has four `A` records for `@` pointing to GitHub (185.199.108–111.153) and a `CNAME` for `www` pointing to `iamanigos.github.io`. Keep auto-renew switched on in GoDaddy.
+### 📇 Update contact details
+They're in the Contact section of `index.html`. Each detail appears twice, in the link (`mailto:`, `tel:`, `https://…`) and in the visible text, so update both.
 
-### Setting up a domain from scratch (reference)
+---
 
-Hosting is free, but a domain such as `hindolitachakraborty.com` costs an annual registration fee at a registrar.
+## Publishing
 
-1. Buy the domain from a registrar.
-2. **GitHub Pages:** Settings → Pages → **Custom domain** → enter the domain → Save. **Vercel:** Project → Settings → Domains → Add.
-3. At the registrar, add **exactly** the DNS records that GitHub or Vercel shows you. Don't copy values from elsewhere.
-4. DNS changes can take from minutes to 48 hours to spread. When they're active, enable **Enforce HTTPS** (GitHub) or confirm the SSL certificate is issued (Vercel).
-5. Update the `canonical`, `og:url` and `og:image` addresses in `index.html` to the new domain.
+Every push to `main` goes live automatically within a minute or two:
 
-## Before each publish
+```bash
+git add -A
+git commit -m "Describe what changed"
+git push origin main
+```
 
-- Preview locally and check the page on a phone-width window.
-- Don't commit anything private (documents, passwords, API keys, personal notes).
-- Check `git status` so you know exactly what will be pushed.
+Before pushing:
+- [ ] Previewed locally, on both a wide and a phone-width window
+- [ ] Bumped `?v=` if CSS or JS changed
+- [ ] `git status` shows only the files you meant to change
+- [ ] Nothing private is being added. **This repository is public.**
+
+Original files you want to keep but **not** publish can be listed in [`.gitignore`](.gitignore).
+
+---
+
+## Domain & hosting
+
+| | |
+|---|---|
+| **Hosting** | GitHub Pages, from the `main` branch, root folder |
+| **Domain** | `raginibyhindolita.com`, registered at GoDaddy |
+| **HTTPS** | Free certificate from GitHub, renewed automatically, *Enforce HTTPS* on |
+| **Old address** | `iamanigos.github.io/hindolita` redirects to the domain |
+
+**GoDaddy DNS records** (leave these as they are):
+
+| Type | Name | Value |
+|---|---|---|
+| A | `@` | `185.199.108.153` |
+| A | `@` | `185.199.109.153` |
+| A | `@` | `185.199.110.153` |
+| A | `@` | `185.199.111.153` |
+| CNAME | `www` | `iamanigos.github.io` |
+| TXT | `_github-pages-challenge-iamanigos` | *(GitHub domain verification)* |
+
+Keep **auto-renew** on in GoDaddy. If the domain lapses, the site goes offline and someone else could register the name.
+
+---
+
+## Accessibility & privacy
+
+- Semantic HTML with a skip link, visible keyboard focus and descriptive alt text for every photo
+- Mobile menu and audio players work with a keyboard and screen readers
+- Text contrast meets WCAG guidelines on every section colour
+- Motion is disabled for visitors who choose *reduce motion*
+- **No cookies, no trackers, no analytics, no third-party scripts.** Only the background music choice is remembered, and only in the visitor's own browser.
+
+---
+
+## Rights
+
+The photographs, recordings, artwork and written content on this site belong to Hindolita Chakraborty. **All rights reserved.** Please don't reuse them without permission.
