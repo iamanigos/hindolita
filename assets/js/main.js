@@ -126,6 +126,119 @@
     paint();
   });
 
+  // Background music: loops softly; starts on the first tap/click/key press
+  // (browsers block sound before any interaction). The visitor's choice is remembered.
+  var bg = document.getElementById('bgMusic');
+  var bgBtn = document.getElementById('bgMusicBtn');
+  if (bg && bgBtn) {
+    var BG_VOLUME = 0.35, KEY = 'bgMusic';
+    var wanted = true, pausedForTrack = false, fadeTimer = null;
+    try { wanted = localStorage.getItem(KEY) !== 'off'; } catch (e) {}
+    bg.volume = 0;
+
+    function fadeTo(target, ms, done) {
+      clearInterval(fadeTimer);
+      var steps = Math.max(1, Math.round(ms / 50)), start = bg.volume, i = 0;
+      fadeTimer = setInterval(function () {
+        i++;
+        bg.volume = Math.min(1, Math.max(0, start + (target - start) * (i / steps)));
+        if (i >= steps) { clearInterval(fadeTimer); if (done) done(); }
+      }, 50);
+    }
+    var started = false;
+    function startBg() {
+      if (!wanted || pausedForTrack || document.hidden || !bg.paused) return;
+      stopping = false; dipping = false;
+      var p = bg.play();
+      if (p && p.then) {
+        p.then(function () {
+          started = true; render();
+          // A song may have started (or the visitor muted) while we were loading.
+          if (!wanted || pausedForTrack) { bg.pause(); return; }
+          fadeTo(BG_VOLUME, 1500);
+        }).catch(function () {});
+      }
+    }
+    var stopping = false, dipping = false;
+    function stopBg(ms) { stopping = true; dipping = false; fadeTo(0, ms || 400, function () { bg.pause(); }); }
+
+    // The track is one minute long: it repeats for as long as the visitor stays.
+    // A gentle volume dip around the loop point hides the tiny gap compressed audio can have.
+    bg.addEventListener('timeupdate', function () {
+      if (stopping || !wanted || bg.paused || !bg.duration) return;
+      var left = bg.duration - bg.currentTime;
+      if (!dipping && left < 1.2) { dipping = true; fadeTo(BG_VOLUME * 0.3, 900); }
+      else if (dipping && bg.currentTime < 1.2 && left > 2) { dipping = false; fadeTo(BG_VOLUME, 1200); }
+    });
+    // Backup for any browser that stops at the end despite the loop setting.
+    bg.addEventListener('ended', function () {
+      if (!wanted || pausedForTrack) return;
+      bg.currentTime = 0;
+      var p = bg.play(); if (p && p.catch) p.catch(function () {});
+    });
+    function render() {
+      var playing = wanted && !bg.paused;
+      bgBtn.classList.toggle('is-playing', playing);
+      bgBtn.classList.toggle('is-waiting', wanted && !playing);
+      bgBtn.classList.toggle('is-off', !wanted);
+      bgBtn.classList.toggle('is-new', wanted && !started);
+      bgBtn.setAttribute('aria-pressed', String(playing));
+      bgBtn.setAttribute('aria-label', playing ? 'Mute background music' : 'Play background music');
+    }
+    bg.addEventListener('play', render);
+    bg.addEventListener('pause', render);
+
+    // Playing → mute. Not playing yet, or muted → play now.
+    bgBtn.addEventListener('click', function () {
+      var playing = wanted && !bg.paused && !stopping;
+      wanted = !playing;
+      try { localStorage.setItem(KEY, wanted ? 'on' : 'off'); } catch (e) {}
+      if (wanted) {
+        players.forEach(function (a) { a.pause(); });
+        pausedForTrack = false;
+        startBg();
+      } else {
+        stopBg();
+      }
+      render();
+    });
+
+    // First interaction anywhere (except the button itself) starts the music.
+    // Phones only allow sound after a tap is completed, so listen for those events
+    // and keep listening until playback has actually begun.
+    var kickEvents = ['pointerup', 'touchend', 'click', 'keydown'];
+    function kick(e) {
+      if (started) {
+        kickEvents.forEach(function (t) { document.removeEventListener(t, kick, true); });
+        return;
+      }
+      if (bgBtn.contains(e.target)) return;
+      startBg();
+    }
+    kickEvents.forEach(function (t) { document.addEventListener(t, kick, true); });
+
+    // Step aside while one of her songs is playing; come back afterwards.
+    players.forEach(function (a) {
+      a.addEventListener('play', function () { pausedForTrack = true; if (!bg.paused) stopBg(300); });
+      function maybeResume() {
+        if (players.some(function (x) { return !x.paused; })) return;
+        pausedForTrack = false;
+        startBg();
+      }
+      a.addEventListener('pause', maybeResume);
+      a.addEventListener('ended', maybeResume);
+    });
+
+    // Pause while the tab is hidden.
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) { if (!bg.paused) { clearInterval(fadeTimer); bg.pause(); } }
+      else startBg();
+    });
+
+    render();
+    startBg(); // works only where the browser already allows sound
+  }
+
   // Reveal-on-scroll
   var reveals = document.querySelectorAll('.reveal');
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
