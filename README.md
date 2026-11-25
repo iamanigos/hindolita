@@ -45,8 +45,8 @@ The site is already in the GitHub repository `iamanigos/hindolita`.
    ```
 2. On GitHub, open the repository → **Settings** → **Pages**.
 3. Under **Build and deployment**, set **Source** to **Deploy from a branch**, **Branch** to `main`, and **Folder** to `/ (root)`. Click **Save**.
-4. Wait 1–2 minutes. Refresh the Pages settings page to see the live address:
-   **https://iamanigos.github.io/hindolita/**
+4. Wait 1–2 minutes. The live site is at **https://raginibyhindolita.com/**
+   (the old address https://iamanigos.github.io/hindolita/ redirects there).
 5. Open it, check every section on a phone and a computer, and tap each contact link.
 
 Every later `git push` updates the live site automatically, usually within a minute or two.
@@ -60,7 +60,11 @@ Every later `git push` updates the live site automatically, usually within a min
 3. Click **Deploy**. Vercel shows a `*.vercel.app` address. Open it and check the site.
 4. If you use Vercel, update the `canonical`, `og:url` and `og:image` addresses at the top of `index.html` to match.
 
-## Custom domain (later, optional)
+## Custom domain
+
+The site uses **raginibyhindolita.com** (registered at GoDaddy). The `CNAME` file in this folder tells GitHub Pages which domain to serve — don't delete it. GoDaddy DNS has four `A` records for `@` pointing to GitHub (185.199.108–111.153) and a `CNAME` for `www` pointing to `iamanigos.github.io`. Keep auto-renew switched on in GoDaddy.
+
+### Setting up a domain from scratch (reference)
 
 Hosting is free, but a domain such as `hindolitachakraborty.com` costs an annual registration fee at a registrar.
 
