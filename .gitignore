@@ -2,3 +2,6 @@
 .vscode/
 *.swp
 *~
+
+# Private working notes (kept locally, not published)
+claude_code_hindolita_website_instructions.md
