@@ -84,18 +84,20 @@ button { font: inherit; }
 
 .menu-btn {
   display: none; border: 0; background: none; color: var(--ink);
-  width: 44px; height: 44px; padding: 0; cursor: pointer; position: relative;
+  width: 44px; height: 48px; padding: 0; cursor: pointer; position: relative;
 }
-.menu-btn .bar {
-  position: absolute; left: 11px; width: 22px; height: 1.5px; background: currentColor;
-  transition: transform .25s, opacity .2s;
+/* Menu icon: a tanpura when closed, a simple × when open */
+.menu-btn svg {
+  position: absolute; inset: 0; margin: auto;
+  fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round;
+  transition: opacity .2s, transform .25s;
 }
-.menu-btn .bar:nth-child(1) { top: 15px; }
-.menu-btn .bar:nth-child(2) { top: 21px; }
-.menu-btn .bar:nth-child(3) { top: 27px; }
-.menu-btn[aria-expanded="true"] .bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
-.menu-btn[aria-expanded="true"] .bar:nth-child(2) { opacity: 0; }
-.menu-btn[aria-expanded="true"] .bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+.menu-icon-tanpura { width: 24px; height: 40px; stroke-width: 1.4; }
+.menu-icon-tanpura .strings { stroke-width: .7; }
+.menu-icon-close { width: 24px; height: 24px; stroke-width: 1.5; opacity: 0; transform: rotate(-45deg); }
+.menu-btn:hover .menu-icon-tanpura { transform: rotate(-8deg); }
+.menu-btn[aria-expanded="true"] .menu-icon-tanpura { opacity: 0; transform: rotate(20deg) scale(.8); }
+.menu-btn[aria-expanded="true"] .menu-icon-close { opacity: 1; transform: none; }
 
 /* ---------- Hero ---------- */
 .hero {
