@@ -171,6 +171,18 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
 .music-caption { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 0; }
 .music-status { font-size: 11px; color: var(--muted); border: 1px solid var(--line); padding: 12px 17px; border-radius: 30px; }
 
+/* Beyond music */
+.beyond { background: var(--paper); }
+.beyond-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 9vw; align-items: start; }
+.beyond h2 { font-size: clamp(38px, 4.2vw, 58px); }
+.beyond-copy { max-width: 570px; }
+.beyond-copy p { font: 18px/1.8 var(--serif); color: #5e594f; margin: 0 0 18px; }
+.beyond-quote {
+  margin: 96px auto 0; padding-top: 56px; max-width: 820px; text-align: center;
+  border-top: 1px solid var(--line);
+}
+.beyond-quote p { font: italic clamp(24px, 2.6vw, 34px)/1.45 var(--serif); letter-spacing: -.01em; color: var(--ink); margin: 0; }
+
 /* Contact */
 .contact { background: var(--dark); color: var(--dark-text); text-align: center; padding: 130px clamp(22px, 8vw, 130px); }
 .contact .eyebrow { color: var(--dark-accent); }
@@ -244,7 +256,8 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
   .section { padding: 82px 24px; }
   .section-head { display: block; margin-bottom: 38px; }
   .section-intro { margin-top: 20px; }
-  .about, .journey-grid { grid-template-columns: 1fr; gap: 38px; }
+  .about, .journey-grid, .beyond-grid { grid-template-columns: 1fr; gap: 38px; }
+  .beyond-quote { margin-top: 64px; padding-top: 40px; }
   .about-photo { height: 105vw; max-height: 560px; }
   .journey-image { height: 112vw; max-height: 560px; }
   .journey-item { grid-template-columns: 40px 1fr; }
