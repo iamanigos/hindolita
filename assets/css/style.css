@@ -152,7 +152,7 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
 .about-copy .about-note { font: 10px/1.6 var(--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--accent); margin-top: 30px; }
 
 /* Journey */
-.journey { background: var(--paper); }
+.journey { background: var(--paper3); }
 .journey-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9vw; align-items: center; }
 .journey-image { height: 600px; overflow: hidden; margin: 0; }
 @media (min-width: 851px) {
@@ -167,7 +167,7 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
 .journey-item p { font-size: 13px; line-height: 1.7; color: var(--muted); margin: 0; }
 
 /* Music */
-.music { background: var(--paper3); }
+.music { background: var(--paper); }
 .music-panel {
   display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 30px;
   border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 32px 0;
