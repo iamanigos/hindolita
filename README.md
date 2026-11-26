@@ -31,10 +31,10 @@ The page is a single scroll, with sections that alternate between light and dark
 | 1 | **Hero** | ivory | Her name, *"Where Poetry Finds a Voice, and Melodies Find a Home"*, main portrait |
 | 2 | **About**: *Music is a way of being.* | dark chocolate | Introduction to her musical world |
 | 3 | **The Roots** | ivory | Childhood and present-day photos with her parents and first gurus |
-| 4 | **The Performer** | charcoal | Live concert photo, stage photo, *"A graceful voice and captivating stage presence."* |
-| 5 | **Music**: *Music, in moments.* | beige | Two recordings in custom dark-brown audio players |
-| 6 | **A musical journey** | aubergine | Seven traditions, from Ghazal to Indian folk |
-| 7 | **Beyond music** | champagne | Her geology & marine research, link to Google Scholar |
+| 4 | **The Voyage** | champagne | Her gurus Pt. Ajoy Chakraborty and Pt. Dwijen Bhattacharya, in round portraits |
+| 5 | **The Performer** | charcoal | Live concert photo, stage photo, *"A graceful voice and captivating stage presence."* |
+| 6 | **Music**: *Music, in moments.* | beige | Two recordings in custom dark-brown audio players |
+| 7 | **A musical journey** | aubergine | Seven traditions, from Ghazal to Indian folk |
 | 8 | **Contact** | maroon | Email, phone, Instagram, Facebook |
 
 **Small touches:**
@@ -58,7 +58,7 @@ All colours are CSS variables at the top of [`assets/css/style.css`](assets/css/
 | Variable | Colour | Used for |
 |---|---|---|
 | `--paper` | `#f4f0e8` | Ivory sections |
-| `--paper2` / `--paper3` | `#ebe5da` / `#e9e3d8` | Champagne / beige sections |
+| `--paper2` / `--paper3` | `#ebe5da` / `#e9e3d8` | Champagne (Voyage) / beige (Music) sections |
 | `--choc` | `#2c2019` | About section |
 | `--dark` | `#292923` | Performer section |
 | `--plum` | `#2a2130` | Journey section |
