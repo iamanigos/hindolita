@@ -401,10 +401,9 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
   transition: max-width .4s ease, opacity .3s ease, padding .4s ease;
 }
 .bg-music-label > span { display: none; }
-.bg-music.is-new .bg-label-new, .bg-music.is-off .bg-label-off { display: inline; }
-/* label always visible before the first start; on hover/focus otherwise */
-.bg-music.is-new .bg-music-label,
-.bg-music.is-off:hover .bg-music-label, .bg-music.is-off:focus-visible .bg-music-label { max-width: 240px; opacity: 1; padding: 0 10px 0 18px; }
+.bg-music.is-new .bg-label-new { display: inline; }
+/* label only before the very first start; playing and muted states stay a compact circle */
+.bg-music.is-new .bg-music-label { max-width: 240px; opacity: 1; padding: 0 10px 0 18px; }
 .bg-music-icon { position: relative; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; }
 .bg-music-icon > * { grid-area: 1 / 1; display: none; }
 .bg-music-note, .bg-music-off {
@@ -427,9 +426,6 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
   border: 1.5px solid #e2cfb3; animation: bg-pulse 2.2s ease-out infinite;
 }
 @keyframes bg-pulse { 0% { transform: scale(.75); opacity: .9; } 100% { transform: scale(1.35); opacity: 0; } }
-@media (hover: none) {
-  .bg-music:not(.is-new) .bg-music-label { max-width: 0; opacity: 0; padding-left: 0; }
-}
 
 /* ---------- Tablet & phone ---------- */
 @media (max-width: 1000px) {
