@@ -258,6 +258,31 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
   border: 1px solid rgba(192, 168, 141, .35); pointer-events: none;
 }
 
+/* Notable performances — a quiet concert-programme list */
+.performances { margin-top: clamp(72px, 8vw, 120px); }
+.performances-title { margin: 0 0 26px; }
+.performances-list {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); column-gap: 6vw;
+  border-top: 1px solid rgba(244, 240, 232, .14);
+}
+.performance { padding: 30px 0 32px; border-bottom: 1px solid rgba(244, 240, 232, .14); }
+.performance.has-photo {
+  grid-column: 1 / -1; display: grid; grid-template-columns: 1.25fr 1fr; gap: 5vw; align-items: center;
+  padding: 44px 0 48px;
+}
+.performance-photo { margin: 0; }
+.performance-photo img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; display: block; filter: saturate(.85); }
+@media (max-width: 850px) {
+  .performance.has-photo { grid-template-columns: 1fr; gap: 26px; padding-top: 32px; }
+}
+.performance p { margin: 0; }
+.performance .performance-date { margin-bottom: 10px; font: italic 17px var(--serif); color: var(--dark-accent); }
+.performance-event { font: 400 clamp(24px, 2.4vw, 30px)/1.25 var(--serif); letter-spacing: -.015em; color: var(--dark-text); }
+.performance .performance-meta { margin-top: 12px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--dark-accent); line-height: 1.7; }
+.performance .performance-song { margin-top: 10px; font: italic 18px/1.5 var(--serif); color: var(--dark-muted); }
+.performance-song em { font-style: normal; color: var(--dark-text); }
+
 /* Music */
 .music { background: var(--paper3); }
 .music-panel {
