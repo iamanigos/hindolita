@@ -282,6 +282,12 @@ h2 { font: 400 clamp(42px, 5.4vw, 72px)/1.02 var(--serif); letter-spacing: -.05e
 .performance .performance-meta { margin-top: 12px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--dark-accent); line-height: 1.7; }
 .performance .performance-song { margin-top: 10px; font: italic 18px/1.5 var(--serif); color: var(--dark-muted); }
 .performance-song em { font-style: normal; color: var(--dark-text); }
+.performance-song a {
+  color: inherit; text-decoration: underline; text-decoration-color: rgba(192, 168, 141, .55);
+  text-decoration-thickness: 1px; text-underline-offset: 4px; transition: text-decoration-color .2s;
+}
+.performance-song a:hover { text-decoration-color: var(--dark-accent); }
+.performance-song .ext { font: normal 13px var(--sans); color: var(--dark-accent); }
 
 /* Music */
 .music { background: var(--paper3); }
