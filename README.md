@@ -32,10 +32,11 @@ The page is a single scroll, with sections that alternate between light and dark
 | 2 | **About**: *Music is a way of being.* | dark chocolate | Introduction to her musical world |
 | 3 | **The Roots** | ivory | Childhood and present-day photos with her parents and first gurus |
 | 4 | **The Voyage** | champagne | Her gurus Pt. Ajoy Chakraborty and Pt. Dwijen Bhattacharya, in round portraits |
-| 5 | **The Performer** | charcoal | Live concert photo, stage photo, *"A graceful voice and captivating stage presence."* |
+| 5 | **The Performer** | charcoal | Live concert photo, stage photo, *"A graceful voice and captivating stage presence."*, and a list of notable performances |
 | 6 | **Music**: *Music, in moments.* | beige | Two recordings in custom dark-brown audio players |
 | 7 | **A musical journey** | aubergine | Seven traditions, from Ghazal to Indian folk |
-| 8 | **Contact** | maroon | Email, phone, Instagram, Facebook |
+| 8 | **Bio & Press Kit** | ivory | Download links for her one-page bio (PDF) and press kit (ZIP) |
+| 9 | **Contact** | maroon | Email, phone, Instagram, Facebook |
 
 **Small touches:**
 - 🪕 **Tanpura menu icon** on phones. It sways gently every few seconds.
@@ -83,6 +84,7 @@ assets/
     upbringing/             Original family photos (source files)
     performer/              Original stage photos (source files)
   music/                    MP3 recordings + background loop
+  downloads/                Bio PDF and press-kit ZIP linked from the Bio & Press Kit section
 
 images/                     Original photographs & artwork, kept for safekeeping
 ```
@@ -116,11 +118,11 @@ All words on the site are in [`index.html`](index.html), and each section is mar
 Near the top and bottom of `index.html`, the stylesheet and script are loaded with version numbers:
 
 ```html
-<link rel="stylesheet" href="assets/css/style.css?v=21">
+<link rel="stylesheet" href="assets/css/style.css?v=31">
 <script src="assets/js/main.js?v=5" defer></script>
 ```
 
-**Add 1 to the number** whenever you change that file (`?v=21` → `?v=22`). This makes every visitor's browser download the new version. Without it, returning visitors can see a half-updated page.
+**Add 1 to the number** whenever you change that file (`?v=31` → `?v=32`). This makes every visitor's browser download the new version. Without it, returning visitors can see a half-updated page.
 
 ### 🎵 Add a song
 1. Put the MP3 in `assets/music/`, with a simple name with no spaces, e.g. `ami-chini-go-chini.mp3`.
@@ -141,6 +143,9 @@ To find a song's length on a Mac, run `afinfo assets/music/your-song.mp3 | grep 
 
 ### 🎶 Change the background music
 Replace `assets/music/background-jog.m4a` with another short loop under the same name, or update the `<audio id="bgMusic">` line near the end of `index.html`. Loops of 30–90 seconds work best. The volume is set by `BG_VOLUME` in `main.js`.
+
+### 📄 Update the bio or press kit
+Replace `assets/downloads/hindolita-chakraborty-bio.pdf` or `hindolita-chakraborty-press-kit.zip`, keeping the same file names, and update the file sizes shown in the Bio & Press Kit section of `index.html`.
 
 ### 📇 Update contact details
 They're in the Contact section of `index.html`. Each detail appears twice, in the link (`mailto:`, `tel:`, `https://…`) and in the visible text, so update both.
