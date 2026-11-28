@@ -145,7 +145,7 @@ To find a song's length on a Mac, run `afinfo assets/music/your-song.mp3 | grep 
 Replace `assets/music/background-jog.m4a` with another short loop under the same name, or update the `<audio id="bgMusic">` line near the end of `index.html`. Loops of 30–90 seconds work best. The volume is set by `BG_VOLUME` in `main.js`.
 
 ### 📄 Update the bio or press kit
-Replace `assets/downloads/hindolita-chakraborty-bio.pdf` or `hindolita-chakraborty-press-kit.zip`, keeping the same file names, and update the file sizes shown in the Bio & Press Kit section of `index.html`.
+Replace `assets/downloads/hindolita-chakraborty-bio.pdf` or `hindolita-chakraborty-press-kit.zip`, keeping the same file names.
 
 ### 📇 Update contact details
 They're in the Contact section of `index.html`. Each detail appears twice, in the link (`mailto:`, `tel:`, `https://…`) and in the visible text, so update both.
